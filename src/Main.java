@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.*;
 import java.io.IOException;
 
@@ -21,6 +23,7 @@ public class Main {
 
             switch (userChoice){
                 case "1":
+                    viewData();
                     break;
                 case "2":
                     break;
@@ -38,6 +41,22 @@ public class Main {
 
         }
     }
+    private static void viewData() throws IOException{
+        FileReader fileReader;
+        BufferedReader bufferedReader;
+
+        try{
+            fileReader = new FileReader("database.txt");
+            bufferedReader = new BufferedReader(fileReader);
+        }catch (Exception e){
+            System.err.println("Database tidak ditemukan");
+            System.err.println("Silahkan menambah data terlebih dahulu");
+            return;
+        }
+        String data = bufferedReader.readLine();
+        System.out.println(data);
+    }
+
     private static Boolean getYesOrNo(){
         Scanner in = new Scanner(System.in);
         System.out.println("Apakah anda ingin melanjutkan ? (y/n)");
